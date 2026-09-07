@@ -1,12 +1,14 @@
 #include "common.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "job.h"
+#include "executor.h"
+
 
 int main(int argc, char *arguments[]) {
     
     char *argv[MAX_ARG];
     FILE *entrada = stdin;
+    job vetor [50];
+    int qtd_jobs, time;
 
 
     if (argc == 3){
@@ -21,18 +23,14 @@ int main(int argc, char *arguments[]) {
             fprintf(stderr, "Arquivo não existe ou não pode ser aberto\n");
             exit(1);
         }
-        
-        
-        
-        
-        
-        
+        time = get_time(entrada);
+        qtd_jobs = load_jobs(entrada, vetor);
 
         if (strcmp(arguments[1], "rate")==0){
-            //do the thing
+            simulador_rate(vetor, time, qtd_jobs);
         }
         if (strcmp(arguments[1], "edf")==0){
-            //do the thing
+            //simulador_edf()
         }
 
     } else {
@@ -42,5 +40,5 @@ int main(int argc, char *arguments[]) {
 
     
         
-
+    return 0;
 }
