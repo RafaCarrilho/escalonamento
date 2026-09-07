@@ -1,3 +1,4 @@
+#include "common.h"
 #include "job.h"  
   
 
@@ -96,5 +97,13 @@ int get_job (FILE* entrada, job* task){
     task-> killed = 0;
     
     return 1;
+}
+
+int load_jobs(FILE* entrada, job vetor[]){
+    int i = 0;
+    while (i < 50 && get_job(entrada, &vetor[i]) == 1){
+        i++;
+    }
+    return i;
 }
 
