@@ -1,3 +1,5 @@
 evidencias.log
 *.o
 .vscode/
+*.txt
+teste_parse
