@@ -4,7 +4,8 @@
 
  
 
-void simulador_rate (job vetor[], int time, int qtd_jobs);
+void simulador_rate (job vetor[], int time, int qtd_jobs, FILE* saida);
+void simulador_edf (job vetor[], int time, int qtd_jobs, FILE* saida);
 
 #endif
 
