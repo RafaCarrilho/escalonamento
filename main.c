@@ -46,11 +46,11 @@ int main(int argc, char *arguments[]) {
         }
 
     } else {
-        fprintf(stderr,"Numero incorreto de argumentos ao iniciar o Scheduler\n");
+        fprintf(stderr,"Número incorreto de argumentos ao iniciar o Scheduler\n");
         exit(1);
     }
 
-    
+
     fclose(entrada);
     fclose(saida);
     return 0;

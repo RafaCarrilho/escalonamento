@@ -7,24 +7,24 @@ int get_time (FILE* entrada){
     char* argv[MAX_ARG];
 
     if (fgets(linha, sizeof(linha), entrada)==NULL){ //aqui eu faço a linha com o conteúdo do arquivo
-            fprintf(stderr, "Arquivo vazio!\n");
+            fprintf(stderr, "Arquivo de entrada vazio.\n");
             exit(1);
         }
     
     parse(linha, argv);
 
     if (argv[0] == NULL){
-            fprintf(stderr, "Arquivo preenchido incorretamente (Sem limite de simulação)\n");
+            fprintf(stderr, "Arquivo preenchido incorretamente (vazio ou sem limite de simulação).\n");
             exit(1);
         }
     char *sobra;
     long time = strtol(argv[0], &sobra, 10);
     if (*sobra != '\0') {
-        fprintf(stderr, "Arquivo preenchido incorretamente\n");
+        fprintf(stderr, "Arquivo preenchido incorretamente (favor usar números).\n");
         exit(1);
     }
     if (time<=0 || time > INT_MAX){
-        fprintf(stderr, "Limite de simulação incorreto (não pode ser menor ou igual a zero ou maior que limite de INT.\n");
+        fprintf(stderr, "Limite de simulação incorreto (não pode ser menor ou igual a zero ou maior que limite de INT).\n");
         exit(1);
     }
     int tempo = (int) time;
@@ -42,7 +42,7 @@ int get_job (FILE* entrada, job* task){
     parse(linha, argv);
     
     if (argv[0] == NULL || argv[1] == NULL || argv[2] == NULL || argv[3] == NULL) {
-        fprintf(stderr, "Linha do arquivo preenchida incorretamente");
+        fprintf(stderr, "Linha do arquivo preenchida incorretamente.\n");
         exit(1);
     }
 
@@ -50,39 +50,39 @@ int get_job (FILE* entrada, job* task){
     
     long period = strtol(argv[1], &sobra, 10);
     if (*sobra != '\0') {
-        fprintf(stderr, "Arquivo preenchido incorretamente\n");
+        fprintf(stderr, "Arquivo preenchido incorretamente (favor usar números).\n");
         exit(1);
     }
     if (period<=0 || period > INT_MAX){
-        fprintf(stderr, "Limite de simulação incorreto (não pode ser menor ou igual a zero ou maior que limite de INT.\n");
+        fprintf(stderr, "Período inválido (não pode ser menor ou igual a zero ou maior que limite de INT).\n");
         exit(1);
     }
     int periodo = (int) period;
 
     long deadline_r = strtol(argv[2], &sobra, 10);
     if (*sobra != '\0') {
-        fprintf(stderr, "Arquivo preenchido incorretamente\n");
+        fprintf(stderr, "Arquivo preenchido incorretamente (favor usar números).\n");
         exit(1);
     }
     if (deadline_r<=0 || deadline_r > INT_MAX){
-        fprintf(stderr, "Limite de simulação incorreto (não pode ser menor ou igual a zero ou maior que limite de INT.\n");
+        fprintf(stderr, "Deadline inválido (não pode ser menor ou igual a zero ou maior que limite de INT).\n");
         exit(1);
     }
     int deadline_relativo = (int) deadline_r;
 
     long rajada = strtol(argv[3], &sobra, 10);
     if (*sobra != '\0') {
-        fprintf(stderr, "Arquivo preenchido incorretamente\n");
+        fprintf(stderr, "Arquivo preenchido incorretamente (favor usar números).\n");
         exit(1);
     }
     if (rajada<=0 || rajada > INT_MAX){
-        fprintf(stderr, "Limite de simulação incorreto (não pode ser menor ou igual a zero ou maior que limite de INT.\n");
+        fprintf(stderr, "Burst inválido (não pode ser menor ou igual a zero ou maior que limite de INT).\n");
         exit(1);
     }
     int burst =  (int) rajada;
 
     if ((periodo >= deadline_relativo  &&  deadline_relativo >= burst)==0){
-        fprintf(stderr, "Regra P>D>C não respeitada.\n");
+        fprintf(stderr, "Regra P >= D >= C não respeitada.\n");
         exit(1);
     }
     
