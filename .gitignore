@@ -2,6 +2,7 @@ evidencias.log
 *.o
 .vscode/
 *.txt
+!voo.txt
 teste_parse
 teste_execrm
 rate_rac4.out
