@@ -15,6 +15,8 @@ void simulador_rate (job vetor[], int time, int qtd_jobs, FILE* saida){
     job* ultimo_ativo=NULL;
     job* job_lost= NULL;
 
+
+    fprintf (saida,"EXECUTION BY RATE\n\n");
     for (t=0; t<time; t++){
         menor_periodo = INT_MAX;
         ativo = NULL;
@@ -113,6 +115,8 @@ void simulador_edf (job vetor[], int time, int qtd_jobs, FILE* saida){
     job* ativo; 
     job* ultimo_ativo=NULL;
     job* job_lost= NULL;
+
+    fprintf (saida,"EXECUTION BY EDF\n\n");
 
     for (t=0; t<time; t++){
         menor_deadline = INT_MAX;
